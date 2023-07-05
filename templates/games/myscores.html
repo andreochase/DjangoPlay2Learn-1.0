@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends "_base.html" %}
+{% load common_filters %}
+
+
+{% block title%}My Scores{% endblock title %}
+{% block main %}
+  <h1 class="text-center" style="font-size: 4rem; color: white; font-family: monospace;">My Scores</h1>
+  {% if user.is_authenticated %}
+  <div class="container" style="display: inline;">
+    <div class="row" style="padding-left: 50px;">
+      <div class=" jumbotron jumbotron-fluid" style="width: 900px;">
+        <h2 class="text-center" style="color: white; font-family: monospace;">Math Facts</h2>
+        <div class="card border border-dark border-5 rounded m-auto p-3 text-center" style="width: 900px;">
+          <div class="container col-md-8">
+            <ol class="ps-5">
+            {% for score in math_scores %}
+              <li class="h4" style="color: black;">
+              <div class="row card border-3 border-rounded m-auto p-3 text-center" style="width: 100%;">
+                <p class="h2" style="word-spacing: 0.1rem; color: black; font-size: 1rem;">{{ score.score }} <i class="fa fa-solid fa-arrow-right"></i><span class="ps-4" ></span>{{ score.operation|swap }} |
+                  {{ score.created|date }} @ {{ score.created|time }} |
+                  Max Number: {{ score.maxnum }} |
+                  Game Length: {{ score.gamelength }} sec
+                </p>
+                </div>
+              </li>
+            {% endfor %}
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class=" jumbotron jumbotron-fluid" style="width: 900px;">
+        <h2 class="text-center" style="color: white; font-family: monospace;">Anagram Hunt</h2>
+        <div class="card border border-dark border-5 rounded m-auto p-3 text-center" style="width: 900px;">
+          <div class="container col-md-8 pb-1">
+            <ol class="ps-5">
+            {% for score in anagram_scores %}
+              <li class="h3" style="color: black;">
+                <div class="card border-3 border-rounded m-auto p-3 text-center" style="width: 100%;">
+                  <p class="h2" style="word-spacing: 0.1rem; color: black; font-size: 1rem;">{{ score.score }} |
+                    {{ score.created|date }} @ {{ score.created|time }} |
+                    Word Length: {{ score.maxnum }} |
+                    Game Length: {{ score.gamelength }}
+                  </p>
+                </div>
+              </li>
+            {% endfor %}
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
+{% endblock main %}

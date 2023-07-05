@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends "_base.html" %}
+
+{% block title%}Reviews{% endblock title %}
+{% block main %}
+  <h1 class="text-center" style="font-size: 4rem; color: white; font-family: monospace;">Reviews</h1>
+      <h2 class="text-center pt-5" style="color: white; font-family: monospace;">Anagram Hunt</h2>
+      <div class="jumbotron jumbotron-fluid" style="background-color: transparent;">
+      <div class="card border border-dark border-5 rounded m-auto p-3 text-center" style="max-width: 50rem; background-color: white;">
+        <div class="list-group list-group-flush">
+          {% for review in anagram_reviews %}
+            <ul class="list-group-item border bg-light boredr-dark rounded" style="list-style: none; background-color: white;">
+              <li class="text-center h5" style="color: black">
+                On {{ review.created|date }} {{ review.username }} gave Anagram Hunt {{ review.votes }} vote{{ review.votes|pluralize:'s'}} and said:
+              </li>
+              <li class="my-2 pb-2 h5" style="color: blue; font-style: italic;">
+                "{{ review.comment }}"
+              </li>
+            </ul>
+          {% endfor %}
+          </div>
+          </div>
+      </div>
+    <div>
+    <br />
+    <h2 class="text-center" style="color: white; font-family: monospace;">Math Facts</h2>
+    <div class="jumbotron jumbotron-fluid pb-5" style="background-color: transparent;">
+      <div class="card border border-dark border-5 rounded m-auto p-3 text-center" style="max-width: 50rem; background-color: white;">
+        <div class="list-group list-group-flush">
+          {% for review in math_reviews %}
+            <ul class="list-group-item border bg-light boredr-dark rounded" style="list-style: none; background-color: white;">
+              <li class="text-center h5" style="color: black">
+                On {{ review.created|date }} {{ review.username }} gave Math Facts {{ review.votes }} vote{{ review.votes|pluralize:'s'}} and said:
+              </li>
+              <li class="my-2 pb-2 h5" style="color: blue; font-style: italic;">
+                "{{ review.comment }}"
+              </li>
+            </ul>
+          {% endfor %}
+        </div>
+        </div>
+    </div>
+  </div>
+{% endblock main %}

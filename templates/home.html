@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+{% block main %}
+  <h4 class="text-center" style="color: white; padding-top: 200px; font-size: 4rem; font-family: monospace;">Player Reviews:</h4>
+
+  <!-- CAROUSEL -->
+  <div class="carousel slide carousel-fade" id="homepage-carousel" data-ride="carousel" style="background-color: transparent; width: 800px; margin-left: 550px;">
+    <div class="carousel-inner" role="listbox" style="background-color: transparent;">
+      {% for review in reviews %}
+        {% if forloop.first %}
+          <div class="carousel-item active">
+        {% else %}
+          <div class="carousel-item">
+        {% endif %}
+        <!--<blockquote>-->
+        <div class="card border-2 border-rounded m-auto p-3 text-center" style="max-width: 50rem; background-color: white;">
+          <h2 style="color: black; font-family: monospace;">{{ review.game }}</h2>  <!-- MATH or ANAGRAM -->
+          <hr />
+          <h3 style="color: blue; font-style: italic;"> "{{ review.comment }}" </h3>
+          <h4 style="color: black;">-- {{ review.username }}</h4>
+          <h5 style="color: black;" class="py-3">{{ review.created }}</h5>
+        </div>
+        <!--</blockquote>-->
+      </div> <!-- for carousel-item above -->
+      {%endfor%}
+      </div> <!-- for carousel-item active above -->
+    </div>
+  </div>
+  <!-- END CAROUSEL -->
+{% endblock main %}
